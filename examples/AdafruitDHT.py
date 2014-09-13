@@ -1,6 +1,7 @@
 #!/usr/bin/python
 # Copyright (c) 2014 Adafruit Industries
 # Author: Tony DiCola
+# Fork: Sancho Muzax
 
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -45,6 +46,10 @@ humidity, temperature = Adafruit_DHT.read_retry(sensor, pin)
 # guarantee the timing of calls to read the sensor).  
 # If this happens try again!
 if humidity is not None and temperature is not None:
-	print 'Temp={0:0.1f}*C  Humidity={1:0.1f}%'.format(temperature, humidity)
+        line= 'Temp = {0:0.0f} *C, Hum = {1:0.0f} %'.format(temperature, humidity)
+        print line
+        file = open("/var/log/dht11.log", "w")
+        file.write(line)
+        file.close()
 else:
-	print 'Failed to get reading. Try again!'
+        print 'Failed to get reading. Try again!'
