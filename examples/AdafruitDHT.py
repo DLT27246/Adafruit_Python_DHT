@@ -48,7 +48,7 @@ humidity, temperature = Adafruit_DHT.read_retry(sensor, pin)
 if humidity is not None and temperature is not None:
         line= 'Temp = {0:0.0f} *C, Hum = {1:0.0f} %'.format(temperature, humidity)
         print line
-        file = open("/var/log/dht11.log", "w")
+        file = open("/run/dht11.log", "w")
         file.write(line)
         file.close()
 else:
